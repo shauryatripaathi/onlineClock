@@ -17,20 +17,38 @@ digitalButton.id = 'digitalButton';
 digitalButton.innerText = 'Digital';
 buttonSection.appendChild(digitalButton);
 
+let clockCircle = document.getElementById('clockCircle');
+clockCircle.style.visibility = 'hidden';
+
 function handleOnAnalogBtn(){
-    alert("handleOnAnalogBtn");
+    clockContainer.appendChild(clockCircle);
+    if(clockCircle.style.visibility == 'hidden'){
+        clockCircle.style.visibility = 'visible'
+        
+    }
+    else if(clockCircle.style.visibility == 'visible'){
+        clockCircle.style.visibility = 'hidden';
+    }
 }
 analogButton.addEventListener("click",handleOnAnalogBtn)
 
-let analogWatch = document.createElement('div');
-analogWatch.id = 'analogWatch';
+let digitalWatch = document.createElement('div');
+digitalWatch.style.visibility = "hidden";
+digitalWatch.id = 'digitalWatch';
 
 function handleOnDigitalBtn(){
-    clockContainer.appendChild(analogWatch);
+    clockContainer.appendChild(digitalWatch);
+    if(digitalWatch.style.visibility == "hidden"){
+        digitalWatch.style.visibility = "visible";
+        clockCircle.style.visibility = 'hidden';
+    }
+    else if(digitalWatch.style.visibility == "visible"){
+        digitalWatch.style.visibility = "hidden";
+    }
     setInterval(()=>{
         let date = Date();
         let time = date.slice(15,25);
-        analogWatch.innerText = time;
+        digitalWatch.innerText = time;
     },100)
 }
 digitalButton.addEventListener("click",handleOnDigitalBtn)
